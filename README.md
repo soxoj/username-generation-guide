@@ -39,6 +39,8 @@ rousbey@distilled.net
 ...
 ```
 
+Also you can find it convenient to use [Email Permutator](http://metricsparrow.com/toolkit/email-permutator/) from Metric Sparrow Toolkit.
+
 For fans of a console there are some specialized tools:
 
 - Script [python-email-permutator](https://github.com/Satys/python-email-permutator) based on spreedsheet mentioned above;
@@ -111,9 +113,23 @@ Writing the results onto the file:
 
 ## Primary info mining
 
-- [BehindTheName](https://www.behindthename.com/name/john)
+It is can be very improtant to check all the variants of non-english username. For example, person with a common name *Aleksandr* may have a passport with name `Alexandr` (letter `x`) and a work login starting with `alexsandr` (letters `xs`) because the different transliteration rules.
 
-- [WeRelate](https://www.werelate.org/wiki/Special:Names). Also see [GitHub repo](https://github.com/tfmorris/Names) with project data.
+This is a source of variability for us, so let's use it.
+
+- [BehindTheName](https://www.behindthename.com/name/john) - excellent site about names. There are common name variants, diminutives (very useful for personal logins) and other languages alternatives.
+
+!['Aleksandr' name variants](./pictures/behindthename.png)
+
+You can use simple script to scrape such data:
+```sh
+$ python3 behind_the_names.py john diminutives
+Johnie
+Johnnie
+Johnny
+```
+
+- [WeRelate](https://www.werelate.org/wiki/Special:Names) - Variant names project, a comprehensive database of name variants with ability to search. Gives much more results than BehindTheNames, but there are also many irrelevant results. Also see [GitHub repo](https://github.com/tfmorris/Names) with project data.
 
 [↑ Back to the start](#what-do-you-have)
 
