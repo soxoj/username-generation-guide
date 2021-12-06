@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import os
 import re
 
 
@@ -31,6 +32,7 @@ def load_rules(filename):
 
 def apply_rule(username, rule):
     results = set({username})
+    once_sign = False
 
     if rule.action == 'replace':
         start_pos = 0
@@ -53,15 +55,34 @@ def apply_rule(username, rule):
             new_name = new_name[:i] + new_name[i].swapcase() + new_name[i+1:]
             results.add(new_name)
 
-    return results
+    elif rule.action == 'append':
+        if rule.arg2 == 'right' and not username.endswith(rule.arg1):
+            results.add(username + rule.arg1)
+        elif rule.arg2 == 'left' and not username.startswith(rule.arg1):
+            results.add(rule.arg1 + username)
+        elif rule.arg2 == 'both':
+            name = username
+            if not username.endswith(rule.arg1):
+                name = rule.arg1 + name
+            if not username.startswith(rule.arg1):
+                name = name + rule.arg1
+            results.add(name)
+
+        once_sign = True
+
+    return results, once_sign
 
 
 
 def process_rules_recursive(usernames, rules, results):
     for username in usernames:
         for r in rules:
-            res = apply_rule(username, r)
+            res, once_sign = apply_rule(username, r)
             new_res = res.difference(results)
+
+            if once_sign:
+                results = results | new_res
+                continue
 
             if not new_res:
                 continue
@@ -91,20 +112,42 @@ if __name__ == '__main__':
         '--username-list',
         help="Filename of username list to mutate",
     )
+    username_group.add_argument(
+        '--username-input',
+        action='store_true',
+        default=False,
+        help="Get usernames from stdin",
+    )
     parser.add_argument(
         'rule_filename',
         type=str,
         help="Rule to mutate (see rules directory)",
     )
+    parser.add_argument(
+        '--remove-known',
+        default=False,
+        action='store_true',
+        help="Remove known usernames from output",
+    )
     args = parser.parse_args()
 
     if args.username:
         usernames = set({args.username})
-    else:
+    elif args.username_list:
         usernames = set(open(args.username_list).read().splitlines())
+    else:
+        import sys
+        usernames = set()
+        for line in sys.stdin:
+            usernames.add(line.strip())
 
     rules = list(load_rules(args.rule_filename))
 
-    usernames = process_rules(usernames, rules).difference(usernames)
+    new_usernames = process_rules(usernames, rules)
+
+    if args.remove_known:
+        usernames = new_usernames.difference(usernames)
+    else:
+        usernames = new_usernames
 
     print('\n'.join(usernames))

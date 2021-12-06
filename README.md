@@ -31,7 +31,7 @@ If you have a username and want to guess similar usernames, jump to the [“User
 - Script based on ProtOSINT combination methods:
 
 ```sh
-python3 ./generate_by_real_info.py
+$ python3 generate_by_real_info.py
 ```
 
 - [Logins generator](https://github.com/c0rv4x/logins-generator) supporting first, last and middle names.
@@ -43,8 +43,55 @@ python3 ./generate_by_real_info.py
 - [WeRelate](https://www.werelate.org/wiki/Special:Names). Also see [GitHub repo](https://github.com/tfmorris/Names) with project data.
 
 
-## Username permutations
+## Username transformations
 
+When you sign up on the site it may turn out that your username is taken. Then you use a variant of name - with characters replacement or additions.
+
+Thus, making assumptions about the transformations and knowing the original name, you can check "neighboring" accounts.
+
+I propose for this my own simple tool that allows you to make transformations by rules.
+
+```sh
+$ python3 transform_username.py --username soxoj rules/printable-leetspeak.rule
+soxoj
+s0xoj
+5ox0j
+50xoj
+...
+```
+
+Rules for transformation are located in the directory `rules` and consist of the following:
+
+- `printable-leetspeak.rule` - common leetspeak transformations such as `e => 3`, `a => 4`, etc.
+- `printable-leetspeak-two-ways.rule` - the same conversions from letters to numbers, but also vice versa
+- `impersonation.rule` - common mutations used by scammers-impersonators such as `l => I`, `O => 0`, etc.
+- `additions.rule` - common additions to the username: underscores and numbers
+- `toggle-letter-case.rule` - changing case of letters, what is needed not so often, but may be useful
+
+You can use a file with a list of usernames:
+
+```sh
+$ cat usernames.txt
+john
+jack
+
+$ python3 transform_username.py rules/impersonation.rule --username-list soxoj
+jack
+iack
+john
+iohn
+```
+
+And even use a pipe to use the output of other tools and itself, combining transformations:
+```sh
+$ python3 transform_username.py rules/printable-leetspeak.rule --username soxoj | python3 transform_username.py rules/impersonation.rule  --username-input
+s0xOj
+sOx0j
+5OxOi
+soxOj
+sox0i
+...
+```
 
 ## Other
 

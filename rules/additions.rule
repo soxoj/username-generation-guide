@@ -1,0 +1,10 @@
+# some popular additions to username
+# append method is working only once
+
+append from _ to left
+append from _ to right
+append from _ to both
+
+append from 1 to right
+append from 2 to right
+append from 3 to right
