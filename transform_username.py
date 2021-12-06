@@ -15,7 +15,7 @@ def load_rules(filename):
         l = line.strip()
         if not l or l.startswith('#'):
             continue
-        data = re.split('(from|to)', l)
+        data = re.split('( from | to )', l)
         if len(data) != 5:
             print(data)
             print(f'Invalid rule line: {l}')
@@ -113,6 +113,7 @@ if __name__ == '__main__':
         help="Filename of username list to mutate",
     )
     username_group.add_argument(
+        '-I',
         '--username-input',
         action='store_true',
         default=False,

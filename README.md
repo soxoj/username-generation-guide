@@ -20,21 +20,94 @@ Do you need extra help to extend the number of likely usernames? For learning me
 
 If you have a username and want to guess similar usernames, jump to the [“Username permutations”](#username-permutations) section.
 
+**Important!** Clone this repository with `git` or [download it](https://github.com/soxoj/username-generation-guide/archive/refs/heads/main.zip) to use Python scripts mentioned below.
+
 ## Combining primary info
 
-- Very useful interactive [Google spreadsheet](https://docs.google.com/spreadsheets/d/17URMtNmXfEZEW9oUL_taLpGaqTDcMkA79J8TRw4xnz8/edit#gid=0) for email permutations.
+Usernames/logins commonly consist of a combination of a first name, a last name, and, a little less often, a middle name (patronymic). Only the first letters can be left, and parts can be separated by some characters as `_`, `.` and so on.
 
-- Script [python-email-permutator](https://github.com/Satys/python-email-permutator) based on previous tool
+Of course, there can be many such combinations, so automation tools are needed. A good example is very useful interactive [Google spreadsheet](https://docs.google.com/spreadsheets/d/17URMtNmXfEZEW9oUL_taLpGaqTDcMkA79J8TRw4xnz8/edit#gid=0) for email permutations from Rob Ousbey, from Distilled.net.
 
-- Alias generator mode of [OSRFramebork](https://github.com/i3visio/osrframework)
+Here is an example of use for `rob ousbey`:
 
-- Script based on ProtOSINT combination methods:
+```sh
+rob@distilled.net
+ousbey@distilled.net
+robousbey@distilled.net
+rob.ousbey@distilled.net
+rousbey@distilled.net
+...
+```
+
+For fans of a console there are some specialized tools:
+
+- Script [python-email-permutator](https://github.com/Satys/python-email-permutator) based on spreedsheet mentioned above;
+
+- [Logins generator](https://github.com/c0rv4x/logins-generator) supporting flexible ways to combine first, last and middle names;
+
+Looking ahead, I will tell you that from lists of names you can [quickly make](#addition-of-mail-domain) a list of emails.
+
+---
+
+If you have any other additional information, you can significantly expand amount of candidates for usernames. It can be year of birth, city, country, profession, and... literally anything.
+
+What can be used in this case?
+
+- My own script based on ProtOSINT combination methods:
 
 ```sh
 $ python3 generate_by_real_info.py
+First name: john
+Last name: smith
+Year of birth: 1980
+Username (optional):
+Zip code (optional):
+johnsmith1980
+smith
+johnsmith80
+jsmith1980
+smithjohn
+...
 ```
 
-- [Logins generator](https://github.com/c0rv4x/logins-generator) supporting first, last and middle names.
+- Great alias generator mode of [OSRFramebork](https://github.com/i3visio/osrframework):
+
+```sh
+$ osrf alias_generator
+Insert a name:                     john
+Insert the first surname:          smith
+Insert the second surname:
+Insert a year (e. g.: birthyear):  1980
+Insert a city:
+Insert a country:
+
+Additional transformations to be added
+--------------------------------------
+
+Extra words to add (',' separated):
+
+Input data:
+-----------
+
+Name:               john
+First Surname:      smith
+Year:               1980
+
+Generated nicks:
+
+[
+  "j.smith",
+  "j.smith.1980",
+  "j.smith.80",
+  "j_smith",
+...
+Up to 41 nicks generated.
+
+Writing the results onto the file:
+	./output.txt
+```
+
+[↑ Back to the start](#what-do-you-have)
 
 ## Primary info mining
 
@@ -42,6 +115,7 @@ $ python3 generate_by_real_info.py
 
 - [WeRelate](https://www.werelate.org/wiki/Special:Names). Also see [GitHub repo](https://github.com/tfmorris/Names) with project data.
 
+[↑ Back to the start](#what-do-you-have)
 
 ## Username transformations
 
@@ -67,6 +141,7 @@ Rules for transformation are located in the directory `rules` and consist of the
 - `impersonation.rule` - common mutations used by scammers-impersonators such as `l => I`, `O => 0`, etc.
 - `additions.rule` - common additions to the username: underscores and numbers
 - `toggle-letter-case.rule` - changing case of letters, what is needed not so often, but may be useful
+- `add_email.rule` - custom rule to add mail domain after usernames
 
 You can use a file with a list of usernames:
 
@@ -84,7 +159,7 @@ iohn
 
 And even use a pipe to use the output of other tools and itself, combining transformations:
 ```sh
-$ python3 transform_username.py rules/printable-leetspeak.rule --username soxoj | python3 transform_username.py rules/impersonation.rule  --username-input
+$ python3 transform_username.py rules/printable-leetspeak.rule --username soxoj | python3 transform_username.py rules/impersonation.rule  -I
 s0xOj
 sOx0j
 5OxOi
@@ -93,6 +168,23 @@ sox0i
 ...
 ```
 
+#### Addition of mail domain
+
+You can use `add_email.rule` and easily edit it to add needed mail domains to check emails in tools such as [mailcat](https://github.com/sharsil/mailcat), [holehe](https://github.com/megadose/holehe) or [GHunt](https://github.com/mxrch/GHunt).
+
+```sh
+$ python3 transform_username.py rules/printable-leetspeak.rule --username soxoj | python3 transform_username.py rules/add_email.rule --remove-known -I
+soxoj@protonmail.com
+sox0j@protonmail.com
+s0x0j@protonmail.com
+50x0j@protonmail.com
+...
+```
+
+[↑ Back to the start](#what-do-you-have)
+
 ## Other
 
 - [Good random names generator](https://github.com/epidemics-scepticism/NickGenerator)
+
+[↑ Back to the start](#what-do-you-have)
