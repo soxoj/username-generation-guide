@@ -1,0 +1,20 @@
+# leetspeak mutations
+# based on https://github.com/hashcat/hashcat/blob/master/rules/leetspeak.rule
+
+replace from a to 4
+
+replace from i to 1
+
+replace from b to 6
+
+replace from e to 3
+
+replace from g to 9
+
+replace from o to 0
+
+replace from t to 7
+
+replace from s to 5
+
+replace from q to 9

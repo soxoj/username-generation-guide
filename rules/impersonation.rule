@@ -1,0 +1,17 @@
+# scam mutations
+# similar symbols used by impersonator scammers
+
+replace from i to l
+replace from l to i
+
+replace from i to 1
+replace from 1 to i
+
+replace from l to 1
+replace from 1 to l
+
+replace from 0 to o
+replace from o to 0
+
+replace from i to j
+replace from j to i

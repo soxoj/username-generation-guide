@@ -31,7 +31,7 @@ If you have a username and want to guess similar usernames, jump to the [“User
 - Script based on ProtOSINT combination methods:
 
 ```sh
-./generate_by_real_info.py
+python3 ./generate_by_real_info.py
 ```
 
 - [Logins generator](https://github.com/c0rv4x/logins-generator) supporting first, last and middle names.
