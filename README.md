@@ -34,8 +34,18 @@ If you have a username and want to guess similar usernames, jump to the [“User
 ./generate_by_real_info.py
 ```
 
+- [Logins generator](https://github.com/c0rv4x/logins-generator) supporting first, last and middle names.
+
 ## Primary info mining
 
 - [BehindTheName](https://www.behindthename.com/name/john)
 
+- [WeRelate](https://www.werelate.org/wiki/Special:Names). Also see [GitHub repo](https://github.com/tfmorris/Names) with project data.
+
+
 ## Username permutations
+
+
+## Other
+
+- [Good random names generator](https://github.com/epidemics-scepticism/NickGenerator)
