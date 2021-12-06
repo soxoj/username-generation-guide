@@ -2,6 +2,8 @@
 
 A definitive guide to generating usernames for OSINT purposes.
 
+![Logo](./pictures/logo.png)
+
 ## Start
 
 Let's find out your goals.
