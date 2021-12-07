@@ -1,0 +1,27 @@
+# scam mutations
+# similar symbols used by impersonator scammers
+
+replace-any-case from I to l
+replace-any-case from l to I
+
+replace-any-case from I to 1
+replace-any-case from 1 to I
+
+replace-any-case from l to 1
+replace-any-case from 1 to l
+
+replace-any-case from 0 to O
+replace-any-case from O to 0
+
+replace-any-case from i to j
+replace-any-case from j to i
+
+remove-pos from 1 to 
+remove-pos from 2 to 
+remove-pos from 3 to 
+remove-pos from 4 to 
+remove-pos from 5 to 
+remove-pos from 6 to 
+remove-pos from 7 to 
+remove-pos from 8 to 
+remove-pos from 9 to 

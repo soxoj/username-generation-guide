@@ -12,7 +12,7 @@ class Rule:
 def load_rules(filename):
     lines = open(filename).read().splitlines()
     for line in lines:
-        l = line.strip()
+        l = line
         if not l or l.startswith('#'):
             continue
         data = re.split('( from | to )', l)
@@ -34,7 +34,22 @@ def apply_rule(username, rule):
     results = set({username})
     once_sign = False
 
-    if rule.action == 'replace':
+    if rule.action == 'replace-any-case':
+        start_pos = 0
+        while True:
+            try:
+                index = username.lower().index(rule.arg1.lower(), start_pos)
+            except:
+                break
+            left, right = username[:start_pos], username[start_pos:]
+            right = right.lower().replace(rule.arg1.lower(), rule.arg2, 1)
+            results.add(left+right)
+            start_pos = index + 1
+
+            if index+len(rule.arg1) > len(username):
+                break
+
+    elif rule.action == 'replace':
         start_pos = 0
         while True:
             try:
@@ -67,6 +82,13 @@ def apply_rule(username, rule):
             if not username.startswith(rule.arg1):
                 name = name + rule.arg1
             results.add(name)
+
+        once_sign = True
+
+    elif rule.action == 'remove-pos':
+        pos = int(rule.arg1)
+        new_username = username[:pos] + username[pos+1:]
+        results.add(new_username)
 
         once_sign = True
 

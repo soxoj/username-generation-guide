@@ -1,5 +1,6 @@
 # scam mutations
 # similar symbols used by impersonator scammers
+# one letter deletion
 
 replace from I to l
 replace from l to I
@@ -15,3 +16,13 @@ replace from O to 0
 
 replace from i to j
 replace from j to i
+
+remove-pos from 1 to 
+remove-pos from 2 to 
+remove-pos from 3 to 
+remove-pos from 4 to 
+remove-pos from 5 to 
+remove-pos from 6 to 
+remove-pos from 7 to 
+remove-pos from 8 to 
+remove-pos from 9 to 
