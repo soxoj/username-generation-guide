@@ -1,0 +1,30 @@
+# cyrillic to latin and vice versa
+replace-any-case from a to а
+replace-any-case from а to a
+
+replace-any-case from o to о
+replace-any-case from о to o
+
+replace-any-case from e to е
+replace-any-case from е to e
+
+replace from T to Т
+replace from Т to T
+
+replace from P to Р
+replace from Р to P
+
+replace-any-case from C to С
+replace-any-case from С to C
+
+replace from H to Н
+replace from Н to H
+
+replace from K to К
+replace from К to K
+
+replace from M to М
+replace from М to M
+
+replace from B to В
+replace from В to B

@@ -14,9 +14,13 @@ replace from 1 to l
 replace from 0 to O
 replace from O to 0
 
-replace from i to j
-replace from j to i
+# replace from i to j
+# replace from j to i
 
+replace from rn to m
+replace from m to rn
+
+remove-pos from 0 to 
 remove-pos from 1 to 
 remove-pos from 2 to 
 remove-pos from 3 to 
