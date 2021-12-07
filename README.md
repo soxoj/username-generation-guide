@@ -139,7 +139,7 @@ Johnny
 
 When you sign up on the site it may turn out that your username is taken. Then you use a variant of name - with characters replacement or additions.
 
-Thus, making assumptions about the transformations and knowing the original name, you can check "neighboring" accounts.
+Thus, making assumptions about the transformations and knowing the original name, you can check "neighboring" accounts (for example, with [maigret](https://github.com/soxoj/maigret)).
 
 I propose for this my own simple tool that allows you to make transformations by rules.
 
