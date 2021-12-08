@@ -20,7 +20,7 @@ If you only have some information as a first name, a last name, a birthday (and,
 
 Do you need extra help to extend the number of likely usernames? For learning methods to get variants of first names and so on, check section [“Primary info mining”](#primary-info-mining).
 
-If you have a username and want to guess similar usernames, jump to the [“Username permutations”](#username-permutations) section.
+If you have a username and want to guess similar usernames, jump to the [“Username transformations”](#username-transformations) section.
 
 **Important!** Clone this repository with `git` or [download it](https://github.com/soxoj/username-generation-guide/archive/refs/heads/main.zip) to use Python scripts mentioned below.
 
@@ -41,19 +41,19 @@ rousbey@distilled.net
 ...
 ```
 
-Also you can find it convenient to use [Email Permutator](http://metricsparrow.com/toolkit/email-permutator/) from Metric Sparrow Toolkit.
+Also, you can find it convenient to use [Email Permutator](http://metricsparrow.com/toolkit/email-permutator/) from Metric Sparrow Toolkit.
 
 For fans of a console there are some specialized tools:
 
-- Script [python-email-permutator](https://github.com/Satys/python-email-permutator) based on spreedsheet mentioned above;
+- Script [python-email-permutator](https://github.com/Satys/python-email-permutator) based on spreadsheet mentioned above.
 
-- [Logins generator](https://github.com/c0rv4x/logins-generator) supporting flexible ways to combine first, last and middle names;
+- [Logins generator](https://github.com/c0rv4x/logins-generator) supporting flexible ways to combine first, last and middle names.
 
 Looking ahead, I will tell you that from lists of names you can [quickly make](#addition-of-mail-domain) a list of emails.
 
 ---
 
-If you have any other additional information, you can significantly expand amount of candidates for usernames. It can be year of birth, city, country, profession, and... literally anything.
+If you have any other additional information, you can significantly expand the number of candidates for usernames. It can be a year of birth, city, country, profession, and... literally anything.
 
 What can be used in this case?
 
@@ -115,15 +115,15 @@ Writing the results onto the file:
 
 ## Primary info mining
 
-It is can be very improtant to check all the variants of non-english username. For example, person with a common name *Aleksandr* may have a passport with name `Alexandr` (letter `x`) and a work login starting with `alexsandr` (letters `xs`) because the different transliteration rules.
+It is can be very important to check all the variants of non-English usernames. For example, a person with the common name *Aleksandr* may have a passport with the name `Alexandr` (letter `x`) and a working login starting with `alexsandr` (letters `xs`) because of the different transliteration rules.
 
 This is a source of variability for us, so let's use it.
 
-- [BehindTheName](https://www.behindthename.com/name/john) - excellent site about names. There are common name variants, diminutives (very useful for personal logins) and other languages alternatives.
+- [BehindTheName](https://www.behindthename.com/name/john) - excellent site about names. There are common name variants, diminutives (very useful for personal logins), and other languages alternatives.
 
 !['Aleksandr' name variants](./pictures/behindthename.png)
 
-You can use simple script to scrape such data:
+You can use a simple script to scrape such data:
 ```sh
 $ python3 behind_the_names.py john diminutives
 Johnie
@@ -131,13 +131,13 @@ Johnnie
 Johnny
 ```
 
-- [WeRelate](https://www.werelate.org/wiki/Special:Names) - Variant names project, a comprehensive database of name variants with ability to search. Gives much more results than BehindTheNames, but there are also many irrelevant results. Also see [GitHub repo](https://github.com/tfmorris/Names) with project data.
+- [WeRelate](https://www.werelate.org/wiki/Special:Names) - Variant names project, a comprehensive database of name variants with the ability to search. Gives much more results than BehindTheNames, but there are also many irrelevant results. Also, see [GitHub repo](https://github.com/tfmorris/Names) with project data.
 
 [↑ Back to the start](#what-do-you-have)
 
 ## Username transformations
 
-When you sign up on the site it may turn out that your username is taken. Then you use a variant of name - with characters replacement or additions.
+When you sign up on the site it may turn out that your username is taken. Then you use a variant of a name - with characters replacement or additions.
 
 Thus, making assumptions about the transformations and knowing the original name, you can check "neighboring" accounts (for example, with [maigret](https://github.com/soxoj/maigret)).
 
@@ -158,7 +158,7 @@ Rules for transformation are located in the directory `rules` and consist of the
 - `printable-leetspeak-two-ways.rule` - the same conversions from letters to numbers, but also vice versa
 - `impersonation.rule` - common mutations used by scammers-impersonators such as `l => I`, `O => 0`, etc.
 - `additions.rule` - common additions to the username: underscores and numbers
-- `toggle-letter-case.rule` - changing case of letters, what is needed not so often, but may be useful
+- `toggle-letter-case.rule` - changing case of letters, what is needed not so often, but maybe useful
 - `add_email.rule` - custom rule to add mail domain after usernames
 
 You can use a file with a list of usernames:
@@ -188,7 +188,7 @@ sox0i
 
 #### Addition of mail domain
 
-You can use `add_email.rule` and easily edit it to add needed mail domains to check emails in tools such as [mailcat](https://github.com/sharsil/mailcat), [holehe](https://github.com/megadose/holehe) or [GHunt](https://github.com/mxrch/GHunt).
+You can use `add_email.rule` and easily edit it to add needed mail domains to check emails in tools such as [mailcat](https://github.com/sharsil/mailcat), [holehe](https://github.com/megadose/holehe), or [GHunt](https://github.com/mxrch/GHunt).
 
 ```sh
 $ python3 transform_username.py rules/printable-leetspeak.rule --username soxoj | python3 transform_username.py rules/add_email.rule --remove-known -I
