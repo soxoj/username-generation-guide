@@ -49,6 +49,8 @@ For fans of a console there are some specialized tools:
 
 - [Logins generator](https://github.com/c0rv4x/logins-generator) supporting flexible ways to combine first, last and middle names.
 
+- [emailGuesser](https://github.com/WhiteHatInspector/emailGuesser) well customizable permutator with support of checks if address is valid in Skype and in breach databases. 
+
 Looking ahead, I will tell you that from lists of names you can [quickly make](#addition-of-mail-domain) a list of emails.
 
 ---
