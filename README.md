@@ -41,7 +41,7 @@ rousbey@distilled.net
 ...
 ```
 
-Also, you can find it convenient to use [Email Permutator](http://metricsparrow.com/toolkit/email-permutator/) from Metric Sparrow Toolkit.
+Also, you can find it convenient to use [Email Permutator](http://metricsparrow.com/toolkit/email-permutator/) from Metric Sparrow Toolkit or [analyzeid permutator](https://analyzeid.com/email-permutator/) with batch processing support.
 
 For fans of a console there are some specialized tools:
 
