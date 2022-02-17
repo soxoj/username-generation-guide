@@ -30,7 +30,9 @@ Usernames/logins commonly consist of a combination of a first name, a last name,
 
 Of course, there can be many such combinations, so automation tools are needed. A good example is very useful interactive [Google spreadsheet](https://docs.google.com/spreadsheets/d/17URMtNmXfEZEW9oUL_taLpGaqTDcMkA79J8TRw4xnz8/edit#gid=0) for email permutations from Rob Ousbey, from Distilled.net.
 
-Here is an example of use for `rob ousbey`:
+<img width="1130" alt="image" src="https://user-images.githubusercontent.com/31013580/154574939-a3838274-bbc3-448f-9ee6-b734c86ed116.png">
+
+Here is an example of Email Permutator usage for `rob ousbey`:
 
 ```sh
 rob@distilled.net
@@ -40,6 +42,15 @@ rob.ousbey@distilled.net
 rousbey@distilled.net
 ...
 ```
+
+A very useful service [NAMINT](https://seintpl.github.io/NAMINT/) offers various links for combinations of first, last and middle name (nickname):
+- search engines (including photo search with Yandex)
+- possible login patterns
+- most popular social platforms search and supposed profiles links
+- gravatars for logins at common email providers (great feature 🔥)
+
+<img width="1211" alt="image" src="https://user-images.githubusercontent.com/31013580/154574758-0af0f9a2-89ad-4cfe-b21e-4c1bedac2557.png">
+
 
 Also, you can find it convenient to use [Email Permutator](http://metricsparrow.com/toolkit/email-permutator/) from Metric Sparrow Toolkit or [analyzeid permutator](https://analyzeid.com/email-permutator/) with batch processing support.
 
