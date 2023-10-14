@@ -1,6 +1,6 @@
 # OSINT Username generation guide
 
-A definitive guide to generating usernames for OSINT purposes.
+A definitive guide to generating usernames for OSINT/SOCMINT/Pentesting purposes.
 
 ![Logo](./pictures/logo.png)
 
@@ -8,9 +8,9 @@ A definitive guide to generating usernames for OSINT purposes.
 
 Let's find out your goals.
 
-If I understand correctly, **you have some information about people**, and you want to **get a list of usernames** (nicknames), that's may be used to search for those people.
+If I understand correctly, **you have some information about people**, and you want to **get a list of usernames** (nicknames, just names), that may be used to search for those people.
 
-Am I right? So, you're in right place.
+Am I right? So, you're in the right place.
 
 Below you can read the information on how to get clues for a new search, starting from the data you know, as well as how to automate this and what tools to use.
 
@@ -22,13 +22,13 @@ Do you need extra help to extend the number of likely usernames? For learning me
 
 If you have a username and want to guess similar usernames, jump to the [“Username transformations”](#username-transformations) section.
 
-**Important!** Clone this repository with `git` or [download it](https://github.com/soxoj/username-generation-guide/archive/refs/heads/main.zip) to use Python scripts mentioned below.
+**Important!** Clone this repository with `git` or [download it](https://github.com/soxoj/username-generation-guide/archive/refs/heads/main.zip) to use the Python scripts mentioned below.
 
 ## Combining primary info
 
-Usernames/logins commonly consist of a combination of a first name, a last name, and, a little less often, a middle name (patronymic). Only the first letters can be left, and parts can be separated by some characters as `_`, `.` and so on.
+Usernames/logins commonly consist of a combination of a first name, a last name, and, a little less often, a middle name (patronymic). Only the first letters can be left, and some characters can separate parts (`_`, `.` and so on).
 
-Of course, there can be many such combinations, so automation tools are needed. A good example is very useful interactive [Google spreadsheet](https://docs.google.com/spreadsheets/d/17URMtNmXfEZEW9oUL_taLpGaqTDcMkA79J8TRw4xnz8/edit#gid=0) for email permutations from Rob Ousbey, from Distilled.net.
+Of course, there can be many such combinations, so automation tools are needed. A good example is a very useful interactive [Google spreadsheet](https://docs.google.com/spreadsheets/d/17URMtNmXfEZEW9oUL_taLpGaqTDcMkA79J8TRw4xnz8/edit#gid=0) for email permutations from Rob Ousbey, from Distilled.net.
 
 <img width="1130" alt="image" src="https://user-images.githubusercontent.com/31013580/154574939-a3838274-bbc3-448f-9ee6-b734c86ed116.png">
 
@@ -46,15 +46,15 @@ rousbey@distilled.net
 A very useful service [NAMINT](https://seintpl.github.io/NAMINT/) offers various links for combinations of first, last and middle name (nickname):
 - search engines (including photo search with Yandex)
 - possible login patterns
-- most popular social platforms search and supposed profiles links
-- gravatars for logins at common email providers (great feature 🔥)
+- most popular social platforms search and supposed profile links
+- Gravatars for logins at common email providers (great feature 🔥)
 
 <img width="1211" alt="image" src="https://user-images.githubusercontent.com/31013580/154574758-0af0f9a2-89ad-4cfe-b21e-4c1bedac2557.png">
 
 
 Also, you can find it convenient to use [Email Permutator](http://metricsparrow.com/toolkit/email-permutator/) from Metric Sparrow Toolkit or [analyzeid permutator](https://analyzeid.com/email-permutator/) with batch processing support.
 
-For fans of a console there are some specialized tools:
+For fans of a console, there are some specialized tools:
 
 - Script [python-email-permutator](https://github.com/Satys/python-email-permutator) based on spreadsheet mentioned above.
 
@@ -128,15 +128,19 @@ Writing the results onto the file:
 
 ## Primary info mining
 
-It is can be very important to check all the variants of non-English usernames. For example, a person with the common name *Aleksandr* may have a passport with the name `Alexandr` (letter `x`) and a working login starting with `alexsandr` (letters `xs`) because of the different transliteration rules.
+It can be very important to check all the variants of non-English usernames. For example, a person with the common name *Aleksandr* may have a passport with the name `Alexandr` (letter `x`) and a working login starting with `alexsandr` (letters `xs`) because of the different transliteration rules.
 
 This is a source of variability for us, so let's use it.
+
+- [BabelStrike](https://github.com/t3l3machus/BabelStrike) - a very powerful tool for normalization and generation of possible usernames out of a full names list. It supports romanization for Greek, Hindi, Spanish, French and Polish.
+
+![BabelStrike usage example](https://user-images.githubusercontent.com/75489922/213708062-3d992884-5858-4bb3-92d3-42510e8ba567.png)
 
 - [BehindTheName](https://www.behindthename.com/name/john) - excellent site about names. There are common name variants, diminutives (very useful for personal logins), and other languages alternatives.
 
 !['Aleksandr' name variants](./pictures/behindthename.png)
 
-You can use a simple script to scrape such data:
+You can use a simple script from this repo to scrape such data:
 ```sh
 $ python3 behind_the_names.py john diminutives
 Johnie
