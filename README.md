@@ -218,6 +218,13 @@ s0x0j@protonmail.com
 
 [↑ Back to the start](#what-do-you-have)
 
+## Covered SOWEL techniques
+
+- [SOTL-8.2. Use Names Permutations](https://sowel.soxoj.com/names-permutations)
+- [SOTL-8.3. Use Personal-Info-Based Identifiers](https://sowel.soxoj.com/personal-info-based-identifiers)
+
+[↑ Back to the start](#what-do-you-have)
+
 ## Other
 
 - [Good random names generator](https://github.com/epidemics-scepticism/NickGenerator)
