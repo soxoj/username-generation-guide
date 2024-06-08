@@ -4,15 +4,25 @@ A definitive guide to generating usernames for OSINT/SOCMINT/Pentesting purposes
 
 ![Logo](./pictures/logo.png)
 
+## Table of Contents
+- [Start](#start)
+- [Combining Primary Info](#combining-primary-info)
+  - [Addition of Personal Information](#addition-of-personal-information)
+- [Primary Info Mining](#primary-info-mining)
+- [Username Transformations](#username-transformations)
+  - [Addition of Mail Domain](#addition-of-mail-domain)
+- [Covered SOWEL Techniques](#covered-sowel-techniques)
+- [Other](#other)
+  
 ## Start
 
-Let's find out your goals.
+Let's identify your goals.
 
 If I understand correctly, **you have some information about people**, and you want to **get a list of usernames** (nicknames, just names), that may be used to search for those people.
 
 Am I right? So, you're in the right place.
 
-Below you can read the information on how to get clues for a new search, starting from the data you know, as well as how to automate this and what tools to use.
+Below, you can find information on how to gather clues for a new search based on the data you already have, as well as how to automate the process and which tools to use.
 
 ### What do you have?
 
@@ -60,11 +70,11 @@ For fans of a console, there are some specialized tools:
 
 - [Logins generator](https://github.com/c0rv4x/logins-generator) supporting flexible ways to combine first, last and middle names.
 
-- [emailGuesser](https://github.com/WhiteHatInspector/emailGuesser) well customizable permutator with support of checks if address is valid in Skype and in breach databases. 
+- [emailGuesser](https://github.com/WhiteHatInspector/emailGuesser) is a customizable permutator with the support of checks if an address is valid in Skype and in breach databases. 
 
 Looking ahead, I will tell you that from lists of names you can [quickly make](#addition-of-mail-domain) a list of emails.
 
----
+### Addition of personal information
 
 If you have any other additional information, you can significantly expand the number of candidates for usernames. It can be a year of birth, city, country, profession, and... literally anything.
 
@@ -124,7 +134,7 @@ Writing the results onto the file:
 	./output.txt
 ```
 
-[↑ Back to the start](#what-do-you-have)
+[↑ Back to the start](#table-of-contents)
 
 ## Primary info mining
 
@@ -150,13 +160,13 @@ Johnny
 
 - [WeRelate](https://www.werelate.org/wiki/Special:Names) - Variant names project, a comprehensive database of name variants with the ability to search. Gives much more results than BehindTheNames, but there are also many irrelevant results. Also, see [GitHub repo](https://github.com/tfmorris/Names) with project data.
 
-[↑ Back to the start](#what-do-you-have)
+[↑ Back to the start](#table-of-contents)
 
 ## Username transformations
 
 When you sign up on the site it may turn out that your username is taken. Then you use a variant of a name - with characters replacement or additions.
 
-Thus, making assumptions about the transformations and knowing the original name, you can check "neighboring" accounts (for example, with [maigret](https://github.com/soxoj/maigret)).
+Thus, making assumptions about the transformations and knowing the original name, you can check "neighbouring" accounts (for example, with [maigret](https://github.com/soxoj/maigret)).
 
 I propose for this my own simple tool that allows you to make transformations by rules.
 
@@ -203,7 +213,7 @@ sox0i
 ...
 ```
 
-#### Addition of mail domain
+### Addition of mail domain
 
 You can use `add_email.rule` and easily edit it to add needed mail domains to check emails in tools such as [mailcat](https://github.com/sharsil/mailcat), [holehe](https://github.com/megadose/holehe), or [GHunt](https://github.com/mxrch/GHunt).
 
@@ -216,17 +226,17 @@ s0x0j@protonmail.com
 ...
 ```
 
-[↑ Back to the start](#what-do-you-have)
+[↑ Back to the start](#table-of-contents)
 
 ## Covered SOWEL techniques
 
 - [SOTL-8.2. Use Names Permutations](https://sowel.soxoj.com/names-permutations)
 - [SOTL-8.3. Use Personal-Info-Based Identifiers](https://sowel.soxoj.com/personal-info-based-identifiers)
 
-[↑ Back to the start](#what-do-you-have)
+[↑ Back to the start](#table-of-contents)
 
 ## Other
 
 - [Good random names generator](https://github.com/epidemics-scepticism/NickGenerator)
 
-[↑ Back to the start](#what-do-you-have)
+[↑ Back to the start](#table-of-contents)
