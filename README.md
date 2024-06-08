@@ -7,6 +7,7 @@ A definitive guide to generating usernames for OSINT/SOCMINT/Pentesting purposes
 ## Table of Contents
 - [Start](#start)
 - [Combining Primary Info](#combining-primary-info)
+  - [Addition of Personal Information](#addition-of-personal-information)
 - [Primary Info Mining](#primary-info-mining)
 - [Username Transformations](#username-transformations)
   - [Addition of Mail Domain](#addition-of-mail-domain)
@@ -73,7 +74,7 @@ For fans of a console, there are some specialized tools:
 
 Looking ahead, I will tell you that from lists of names you can [quickly make](#addition-of-mail-domain) a list of emails.
 
----
+### Addition of personal information
 
 If you have any other additional information, you can significantly expand the number of candidates for usernames. It can be a year of birth, city, country, profession, and... literally anything.
 
@@ -133,7 +134,7 @@ Writing the results onto the file:
 	./output.txt
 ```
 
-[↑ Back to the start](#what-do-you-have)
+[↑ Back to the start](#table-of-contents)
 
 ## Primary info mining
 
@@ -159,7 +160,7 @@ Johnny
 
 - [WeRelate](https://www.werelate.org/wiki/Special:Names) - Variant names project, a comprehensive database of name variants with the ability to search. Gives much more results than BehindTheNames, but there are also many irrelevant results. Also, see [GitHub repo](https://github.com/tfmorris/Names) with project data.
 
-[↑ Back to the start](#what-do-you-have)
+[↑ Back to the start](#table-of-contents)
 
 ## Username transformations
 
@@ -225,17 +226,17 @@ s0x0j@protonmail.com
 ...
 ```
 
-[↑ Back to the start](#what-do-you-have)
+[↑ Back to the start](#table-of-contents)
 
 ## Covered SOWEL techniques
 
 - [SOTL-8.2. Use Names Permutations](https://sowel.soxoj.com/names-permutations)
 - [SOTL-8.3. Use Personal-Info-Based Identifiers](https://sowel.soxoj.com/personal-info-based-identifiers)
 
-[↑ Back to the start](#what-do-you-have)
+[↑ Back to the start](#table-of-contents)
 
 ## Other
 
 - [Good random names generator](https://github.com/epidemics-scepticism/NickGenerator)
 
-[↑ Back to the start](#what-do-you-have)
+[↑ Back to the start](#table-of-contents)
