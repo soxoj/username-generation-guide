@@ -16,13 +16,13 @@ A definitive guide to generating usernames for OSINT/SOCMINT/Pentesting purposes
   
 ## Start
 
-Let's find out your goals.
+Let's identify your goals.
 
 If I understand correctly, **you have some information about people**, and you want to **get a list of usernames** (nicknames, just names), that may be used to search for those people.
 
 Am I right? So, you're in the right place.
 
-Below you can read the information on how to get clues for a new search, starting from the data you know, as well as how to automate this and what tools to use.
+Below, you can find information on how to gather clues for a new search based on the data you already have, as well as how to automate the process and which tools to use.
 
 ### What do you have?
 
@@ -70,7 +70,7 @@ For fans of a console, there are some specialized tools:
 
 - [Logins generator](https://github.com/c0rv4x/logins-generator) supporting flexible ways to combine first, last and middle names.
 
-- [emailGuesser](https://github.com/WhiteHatInspector/emailGuesser) well customizable permutator with support of checks if address is valid in Skype and in breach databases. 
+- [emailGuesser](https://github.com/WhiteHatInspector/emailGuesser) is a customizable permutator with the support of checks if an address is valid in Skype and in breach databases. 
 
 Looking ahead, I will tell you that from lists of names you can [quickly make](#addition-of-mail-domain) a list of emails.
 
@@ -166,7 +166,7 @@ Johnny
 
 When you sign up on the site it may turn out that your username is taken. Then you use a variant of a name - with characters replacement or additions.
 
-Thus, making assumptions about the transformations and knowing the original name, you can check "neighboring" accounts (for example, with [maigret](https://github.com/soxoj/maigret)).
+Thus, making assumptions about the transformations and knowing the original name, you can check "neighbouring" accounts (for example, with [maigret](https://github.com/soxoj/maigret)).
 
 I propose for this my own simple tool that allows you to make transformations by rules.
 
