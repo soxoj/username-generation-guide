@@ -4,6 +4,15 @@ A definitive guide to generating usernames for OSINT/SOCMINT/Pentesting purposes
 
 ![Logo](./pictures/logo.png)
 
+## Table of Contents
+- [Start](#start)
+- [Combining Primary Info](#combining-primary-info)
+- [Primary Info Mining](#primary-info-mining)
+- [Username Transformations](#username-transformations)
+  - [Addition of Mail Domain](#addition-of-mail-domain)
+- [Covered SOWEL Techniques](#covered-sowel-techniques)
+- [Other](#other)
+  
 ## Start
 
 Let's find out your goals.
@@ -203,7 +212,7 @@ sox0i
 ...
 ```
 
-#### Addition of mail domain
+### Addition of mail domain
 
 You can use `add_email.rule` and easily edit it to add needed mail domains to check emails in tools such as [mailcat](https://github.com/sharsil/mailcat), [holehe](https://github.com/megadose/holehe), or [GHunt](https://github.com/mxrch/GHunt).
 
