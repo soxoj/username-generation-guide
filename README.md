@@ -72,6 +72,22 @@ For fans of a console, there are some specialized tools:
 
 - [emailGuesser](https://github.com/WhiteHatInspector/emailGuesser) is a customizable permutator with the support of checks if an address is valid in Skype and in breach databases. 
 
+- [username-anarchy](https://github.com/urbanadventurer/username-anarchy) generates usernames from a name in dozens of known formats (`anna.key`, `akey`, `k.anna`, and so on). It takes a single name, a file of names, or your own format string, and can generate names from a country dataset if you have no particular person in mind.
+
+```sh
+$ ./username-anarchy anna key
+anna
+annakey
+anna.key
+annakey
+annak
+a.key
+akey
+kanna
+k.anna
+...
+```
+
 If you have no particular person in mind, but need likely usernames for an organization (username enumeration, horizontal password attacks), there are ready-made lists:
 
 - [statistically-likely-usernames](https://github.com/insidetrust/statistically-likely-usernames) - wordlists of the most common usernames in various formats (`jsmith`, `john.smith`, `jjs`, `johnsmith`, and the same as emails), ordered by frequency, so short lists already cover most of the users. Also contains base name lists to build your own formats and a DOB list generator.
@@ -99,43 +115,6 @@ johnsmith80
 jsmith1980
 smithjohn
 ...
-```
-
-- Great alias generator mode of [OSRFramebork](https://github.com/i3visio/osrframework):
-
-```sh
-$ osrf alias_generator
-Insert a name:                     john
-Insert the first surname:          smith
-Insert the second surname:
-Insert a year (e. g.: birthyear):  1980
-Insert a city:
-Insert a country:
-
-Additional transformations to be added
---------------------------------------
-
-Extra words to add (',' separated):
-
-Input data:
------------
-
-Name:               john
-First Surname:      smith
-Year:               1980
-
-Generated nicks:
-
-[
-  "j.smith",
-  "j.smith.1980",
-  "j.smith.80",
-  "j_smith",
-...
-Up to 41 nicks generated.
-
-Writing the results onto the file:
-	./output.txt
 ```
 
 [↑ Back to the start](#table-of-contents)
@@ -188,8 +167,10 @@ Rules for transformation are located in the directory `rules` and consist of the
 - `printable-leetspeak.rule` - common leetspeak transformations such as `e => 3`, `a => 4`, etc.
 - `printable-leetspeak-two-ways.rule` - the same conversions from letters to numbers, but also vice versa
 - `impersonation.rule` - common mutations used by scammers-impersonators such as `l => I`, `O => 0`, etc.
+- `impersonation-advanced.rule` - the same mutations, but applied regardless of the letter case, plus an `i => j` swap
 - `additions.rule` - common additions to the username: underscores and numbers
 - `toggle-letter-case.rule` - changing case of letters, what is needed not so often, but maybe useful
+- `cyrillic.rule` - replacement of visually identical Cyrillic and Latin letters (`a`, `o`, `e`, `c`...), used both by impersonators and by people typing their name in the wrong layout
 - `add_email.rule` - custom rule to add mail domain after usernames
 
 You can use a file with a list of usernames:
@@ -199,11 +180,12 @@ $ cat usernames.txt
 john
 jack
 
-$ python3 transform_username.py rules/impersonation.rule --username-list soxoj
+$ python3 transform_username.py rules/impersonation.rule --username-list usernames.txt
 jack
 iack
 john
 iohn
+...
 ```
 
 And even use a pipe to use the output of other tools and itself, combining transformations:

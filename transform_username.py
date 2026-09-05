@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import argparse
-import os
 import re
 
 
@@ -16,16 +15,15 @@ def load_rules(filename):
         if not l or l.startswith('#'):
             continue
         data = re.split('( from | to )', l)
-        if len(data) != 5:
-            print(data)
+        if len(data) not in (1, 5):
             print(f'Invalid rule line: {l}')
             continue
 
         r = Rule()
 
         r.action = data[0].strip()
-        r.arg1 = data[2].strip()
-        r.arg2 = data[4].strip()
+        r.arg1 = data[2].strip() if len(data) == 5 else ''
+        r.arg2 = data[4].strip() if len(data) == 5 else ''
 
         yield r
 
@@ -77,9 +75,9 @@ def apply_rule(username, rule):
             results.add(rule.arg1 + username)
         elif rule.arg2 == 'both':
             name = username
-            if not username.endswith(rule.arg1):
-                name = rule.arg1 + name
             if not username.startswith(rule.arg1):
+                name = rule.arg1 + name
+            if not username.endswith(rule.arg1):
                 name = name + rule.arg1
             results.add(name)
 
@@ -96,28 +94,25 @@ def apply_rule(username, rule):
 
 
 
-def process_rules_recursive(usernames, rules, results):
-    for username in usernames:
+def process_rules(usernames, rules):
+    # mutations are applied to their own results until nothing new appears,
+    # so the queue is used instead of recursion: long usernames give
+    # thousands of variants and blow the recursion limit
+    results = set(usernames)
+    queue = list(usernames)
+
+    while queue:
+        username = queue.pop()
         for r in rules:
             res, once_sign = apply_rule(username, r)
-            new_res = res.difference(results)
 
-            if once_sign:
-                results = results | new_res
-                continue
-
-            if not new_res:
-                continue
-
-            for result in new_res:
-                rec_res = process_rules_recursive(set({result}), rules, results | new_res)
-                results = results | rec_res | new_res
+            for new_username in res.difference(results):
+                results.add(new_username)
+                # results of append and remove-pos are not mutated further
+                if not once_sign:
+                    queue.append(new_username)
 
     return results
-
-
-def process_rules(usernames, rules):
-    return process_rules_recursive(usernames, rules, usernames)
 
 
 if __name__ == '__main__':
