@@ -72,6 +72,10 @@ For fans of a console, there are some specialized tools:
 
 - [emailGuesser](https://github.com/WhiteHatInspector/emailGuesser) is a customizable permutator with the support of checks if an address is valid in Skype and in breach databases. 
 
+If you have no particular person in mind, but need likely usernames for an organization (username enumeration, horizontal password attacks), there are ready-made lists:
+
+- [statistically-likely-usernames](https://github.com/insidetrust/statistically-likely-usernames) - wordlists of the most common usernames in various formats (`jsmith`, `john.smith`, `jjs`, `johnsmith`, and the same as emails), ordered by frequency, so short lists already cover most of the users. Also contains base name lists to build your own formats and a DOB list generator.
+
 Looking ahead, I will tell you that from lists of names you can [quickly make](#addition-of-mail-domain) a list of emails.
 
 ### Addition of personal information
