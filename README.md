@@ -11,6 +11,7 @@ A definitive guide to generating usernames for OSINT/SOCMINT/Pentesting purposes
 - [Primary Info Mining](#primary-info-mining)
 - [Username Transformations](#username-transformations)
   - [Addition of Mail Domain](#addition-of-mail-domain)
+- [Where to Check the Usernames](#where-to-check-the-usernames)
 - [Covered SOWEL Techniques](#covered-sowel-techniques)
 - [Other](#other)
   
@@ -92,6 +93,10 @@ If you have no particular person in mind, but need likely usernames for an organ
 
 - [statistically-likely-usernames](https://github.com/insidetrust/statistically-likely-usernames) - wordlists of the most common usernames in various formats (`jsmith`, `john.smith`, `jjs`, `johnsmith`, and the same as emails), ordered by frequency, so short lists already cover most of the users. Also contains base name lists to build your own formats and a DOB list generator.
 
+  In which order to check? Generation is easy, but you quickly get thousands of candidates, and checking them all is expensive (and, against a login form, noisy). These lists are built exactly around that: name popularity follows a Pareto curve, so `jsmith` is worth far more than the thousandth name down. If you don't know the username format, start with the interleaved `awesome-mix-vol1.txt` (~25 800 entries mixing the most common formats) and only then `vol2.txt` (~49 400 more). Order your own generated list the same way: put the plain `firstname.lastname` / `jsmith` forms first and the exotic transformations (leetspeak, impersonation swaps) last, because those are what a real person picks only after the obvious login is taken.
+
+- [SecLists](https://github.com/danielmiessler/SecLists) - the standard collection of wordlists for security testing. `Usernames/` contains common logins, service and test accounts, and `Usernames/Names/` contains first and last names by country (`familynames-usa-top1000.txt`, `forenames-india-top1000.txt`, `names-brazil-top100000.txt`), which is a good input for the permutators above.
+
 Looking ahead, I will tell you that from lists of names you can [quickly make](#addition-of-mail-domain) a list of emails.
 
 ### Addition of personal information
@@ -122,6 +127,16 @@ smithjohn
 ## Primary info mining
 
 It can be very important to check all the variants of non-English usernames. For example, a person with the common name *Aleksandr* may have a passport with the name `Alexandr` (letter `x`) and a working login starting with `alexsandr` (letters `xs`) because of the different transliteration rules.
+
+The same name can be spelled differently in a passport depending on which standard was applied: for Russian names the old GOST/FMS rules and the current ICAO Doc 9303 rules give different results (for example `Юлия` becomes `Yuliya` under the old rules and `Iuliia` under ICAO; see the [passport table](https://en.wikipedia.org/wiki/Romanization_of_Russian)). So it is worth generating logins from several transliterations of the same name, not just one.
+
+Asian names are an even bigger source of variants, because several romanization systems coexist and the passport spelling often follows none of them:
+
+- **Chinese**: mainland Pinyin vs older Wade-Giles vs Cantonese (Hong Kong) spellings - `李` is `Li` or `Lee`, `王` is `Wang` or `Wong`, `张` is `Zhang` or `Chang`. The given name may be joined, hyphenated or split (`Zedong` / `Ze-dong` / `Ze Dong`).
+- **Japanese**: Hepburn vs Kunrei-shiki - `し` is `shi` or `si`, `つ` is `tsu` or `tu`, `ち` is `chi` or `ti`. Long vowels get spelled several ways too: `佐藤` can be `Sato`, `Satou` or `Satoh`.
+- **Korean**: the official Revised Romanization vs the older McCune-Reischauer vs the conventional passport spelling - `김` is `Gim` by the standard but `Kim` on nearly every passport, `이` is officially `I` but written `Lee`, `박` is `Bak` but usually `Park`.
+
+On top of that, in all three languages the family name comes first at home but is often flipped in Western contexts, so it is worth trying both orders. The practical takeaway is the same as above: generate logins from every plausible romanization, not just the one spelling you were given.
 
 This is a source of variability for us, so let's use it.
 
@@ -218,6 +233,26 @@ s0x0j@protonmail.com
 
 - [SOTL-8.2. Use Names Permutations](https://sowel.soxoj.com/names-permutations)
 - [SOTL-8.3. Use Personal-Info-Based Identifiers](https://sowel.soxoj.com/personal-info-based-identifiers)
+
+[↑ Back to the start](#table-of-contents)
+
+## Where to check the usernames
+
+You now have a list of names, logins and emails. The point of all this was to find accounts, so feed the list into tools that check many sites at once:
+
+- [maigret](https://github.com/soxoj/maigret) - checks a username across 3000+ sites and pulls extra data (IDs, other accounts) from the pages it finds. Takes usernames as arguments or a whole list with `--input-file` (`-` reads stdin, so you can pipe the scripts above straight into it).
+- [user-scanner](https://github.com/kaifcodec/user-scanner) - a 2-in-1 username and email checker (290+ username sites, 175+ email sites) that also scrapes profile metadata and pivots between usernames and emails. Takes a single input (`-u`/`-e`) or a file (`-uf`/`-ef`).
+- [Sherlock](https://github.com/sherlock-project/sherlock) - the classic username checker across social networks, a good second opinion to maigret.
+- [holehe](https://github.com/megadose/holehe) - tells you which sites a given email is registered on, without notifying the owner.
+- [mailcat](https://github.com/sharsil/mailcat) - finds which of the common mail providers a username exists at (see [Addition of mail domain](#addition-of-mail-domain) for turning a name list into emails).
+
+```sh
+# check a list of usernames from a file
+$ maigret --input-file usernames.txt
+
+# or generate variants and check them in one go
+$ python3 transform_username.py rules/additions.rule --username johnsmith | maigret --input-file -
+```
 
 [↑ Back to the start](#table-of-contents)
 
